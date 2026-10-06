@@ -30,6 +30,16 @@ export const errorHandler = (error, _req, res, _next) => {
     message = 'Request body contains invalid JSON';
   }
 
+  if (error.code === 'LIMIT_FILE_SIZE') {
+    statusCode = 413;
+    message = 'File size cannot exceed 10MB';
+  }
+
+  if (error.code === 'LIMIT_UNEXPECTED_FILE') {
+    statusCode = 400;
+    message = 'Only one file may be uploaded using the file field';
+  }
+
   if (error.code === 11000) {
     statusCode = 409;
     message = 'A user with that email already exists';

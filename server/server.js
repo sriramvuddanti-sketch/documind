@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 
 import authRoutes from './routes/auth.js';
+import documentRoutes from './routes/documents.js';
 import { errorHandler, notFound } from './middleware/errorHandler.js';
 
 dotenv.config();
@@ -32,6 +33,7 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/documents', documentRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
